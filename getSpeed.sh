@@ -20,6 +20,7 @@ upload=$(echo "scale=4;${stats[7]}/1000000" | bc)
 
 #echo $0
 # gets the path where the database needs to be created(usually the path of this script)
+# so that this script can be run from any location
 path=$(echo $0 | awk 'BEGIN {FS="/"};{for(i=1;i<=(NF-1);i++) {printf("%s/",$i)}};')
 #echo $path
 
