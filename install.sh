@@ -9,6 +9,7 @@ absolutePath="${0/"./"/"$runningDir/"}"
 # echo "absolute path is $absolutePath"
 
 # gets the absolute directory for this script
+# so that the script can be run from any location
 absoluteDir=$(echo $absolutePath | awk 'BEGIN {FS="/"};{for(i=1;i<=(NF-1);i++) {printf("%s/",$i)}};')
 # echo "absolute directory is $absoluteDir"
 
