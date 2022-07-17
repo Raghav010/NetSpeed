@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # the directory where this script is being run from
 runningDir=$(pwd)
 # echo "pwd is $runningDir"
@@ -12,6 +13,7 @@ absolutePath="${0/"./"/"$runningDir/"}"
 # so that the script can be run from any location
 absoluteDir=$(echo $absolutePath | awk 'BEGIN {FS="/"};{for(i=1;i<=(NF-1);i++) {printf("%s/",$i)}};')
 # echo "absolute directory is $absoluteDir"
+
 
 # going to the application directory
 cd $absoluteDir
@@ -34,3 +36,18 @@ echo "" >> temp # newline after the last cron entry
 fi
 
 crontab temp
+
+rm temp
+
+
+#adding the alias to run the plotting software
+
+abash=$(grep -F "alias plotSpeed='cd $absoluteDir && python3 speedPlot.py'" $HOME/.bashrc)
+
+if [[ $abash == "" ]]
+then
+echo "alias plotSpeed='cd $absoluteDir && python3 speedPlot.py'" >> $HOME/.bashrc
+echo "" >> $HOME/.bashrc
+source $HOME/.bashrc
+fi
+
