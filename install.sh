@@ -42,11 +42,11 @@ rm temp
 
 #adding the alias to run the plotting software
 
-abash=$(grep -F "alias plotSpeed='cd $absoluteDir && python3 speedPlot.py'" $HOME/.bashrc)
+abash=$(grep -F "alias plotSpeed='cd $absoluteDir && python3 speedPlot.py &'" $HOME/.bashrc)
 
 if [[ $abash == "" ]]
 then
-echo "alias plotSpeed='cd $absoluteDir && python3 speedPlot.py'" >> $HOME/.bashrc
+echo -e "alias plotSpeed='cd $absoluteDir && python3 speedPlot.py &'" >> $HOME/.bashrc
 echo "" >> $HOME/.bashrc
 source $HOME/.bashrc
 fi
