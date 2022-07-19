@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# need admin privileges 
 
 # the directory where this script is being run from
 runningDir=$(pwd)
@@ -19,7 +20,7 @@ absoluteDir=$(echo $absolutePath | awk 'BEGIN {FS="/"};{for(i=1;i<=(NF-1);i++) {
 cd $absoluteDir
 
 # temp holds the new crontab
-crontab -l > temp
+sudo crontab -l -u root > temp
 
 # the cron entry in the crontab for the getSpeed script(every 10 minutes)
 cronEntry="*/10 * * * * "$absoluteDir"getSpeed.sh"
@@ -35,7 +36,7 @@ echo "$cronEntry" >> temp
 echo "" >> temp # newline after the last cron entry
 fi
 
-crontab temp
+sudo crontab -u root temp
 
 rm temp
 
@@ -46,7 +47,7 @@ abash=$(grep -F "alias plotSpeed='cd $absoluteDir && python3 speedPlot.py &'" $H
 
 if [[ $abash == "" ]]
 then
-echo -e "alias plotSpeed='cd $absoluteDir && python3 speedPlot.py &'" >> $HOME/.bashrc
+echo "alias plotSpeed='cd $absoluteDir && python3 speedPlot.py &'" >> $HOME/.bashrc
 echo "" >> $HOME/.bashrc
 source $HOME/.bashrc
 fi
