@@ -15,7 +15,7 @@ absoluteDir=$(echo "$absolutePath" | awk 'BEGIN {FS="/"};{for(i=1;i<=(NF-1);i++)
 
 # going to the application directory
 cd "$absoluteDir"
-
+chmod +x .soft/getSpeed.sh
 
 # temp holds the new crontab
 sudo crontab -l -u root > temp
