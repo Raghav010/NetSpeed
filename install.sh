@@ -4,7 +4,6 @@
 
 runningDir=$(pwd)
 
-
 # gets the absolute path of the script(replaces ./ with runningDir)
 absolutePath="${0/"./"/"$runningDir/"}"
 
@@ -16,6 +15,7 @@ absoluteDir=$(echo "$absolutePath" | awk 'BEGIN {FS="/"};{for(i=1;i<=(NF-1);i++)
 # going to the application directory
 cd "$absoluteDir"
 chmod +x .soft/getSpeed.sh
+chmod +x uninstall.sh
 
 # temp holds the new crontab
 sudo crontab -l -u root > temp
@@ -36,6 +36,8 @@ sudo crontab -u root temp
 rm temp
 
 
+
+
 #adding the alias to run the plotting software
 abash=$(grep -F "alias plotSpeed='cd $absoluteDir && python3 .soft/speedPlot.py &'" $HOME/.bashrc)
 
@@ -45,4 +47,17 @@ echo "alias plotSpeed='cd $absoluteDir && python3 .soft/speedPlot.py &'" >> $HOM
 echo "" >> $HOME/.bashrc
 source $HOME/.bashrc
 fi
+
+
+#alias to pause the speed data collection
+abash=$(grep -F "alias NSpause='sudo crontab -l -u root | grep -v -F \"$cronEntry\" | sudo crontab -u root - &'" $HOME/.bashrc)
+
+if [[ $abash == "" ]]
+then
+echo "alias NSpause='sudo crontab -l -u root | grep -v -F \"$cronEntry\" | sudo crontab -u root - &'" >> $HOME/.bashrc
+echo "" >> $HOME/.bashrc
+source $HOME/.bashrc
+fi
+
+
 
