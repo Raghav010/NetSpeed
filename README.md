@@ -14,6 +14,7 @@
 
 ## **Pausing**
 - #### **To pause the speed data collection type `NSpause` into your terminal** (_Note:You need to have admin privileges to do this_)
+- #### **To resume speed data collection run the `install.sh` script**
 
 <br>
 
@@ -31,4 +32,6 @@
     - ##### **sqlite3**(_install using pip_)
 - ##### **speedtest-cli**(_install using your distro's package manager_)
 
-_Note:This software will only collect wifi speed data when the machine is NOT on suspend_
+_Note : This software will only collect wifi speed data when the machine is NOT on suspend_
+
+_Note : If NSpause and plotSpeed arent working run `source ~/.bashrc`_
